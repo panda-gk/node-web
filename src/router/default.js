@@ -15,6 +15,14 @@ const routes = [
     },
     component: () => import(/* webpackChunkName: "home" */ '@/views/Register.vue')
   },
+  {
+    path: '/',
+    redirect: '/home'
+  },
+  {
+    path: '*',
+    redirect: '/login'
+  }
 ]
 
 export default routes

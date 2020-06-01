@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import { Message } from 'element-ui';
 import EnvConfig from './../config'
 
 axios.defaults.baseURL = EnvConfig.BASE_URL
@@ -10,13 +10,17 @@ axios.interceptors.request.use((config) => {
   // if (EnvConfig.APP_ENV !== 'mock') {
   //   config.headers['X-TOKEN'] = token
   // }
-  config.headers['X-TOKEN'] = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJOYW1lIjoiemhhbmdzYW4iLCJwYXNzd29yZCI6ImFiYyIsInNleCI6MSwiaWF0IjoxNTkwMzk5MDE5LCJleHAiOjE1OTA0MDYyMTl9.m98-9lieD_bFHX32J8J36phzXiZ0491Q1tszz6PS5Uo'
+  const token = localStorage.getItem('token')
+  if (token) {
+    config.headers['X-TOKEN'] = token
+
+  }
   for (const key in config.params) {
     if (config.params[key] === null || config.params[key] === '') {
       delete config.params[key]
     }
   }
-
+  console.log(config)
   return config
 }, (error) => {
   console.log(error) // for debug
@@ -28,18 +32,16 @@ axios.interceptors.response.use((response) => {
   if (EnvConfig.BASE_URL.indexOf('yapi.mockuai') > -1) {
     return response.data.data
   }
-  console.log(response)
   const { code } = response.data
-
-  if (code === -1) {
+  if (code === 20001) {
     // 未登录
     // window.location.hash = '/login'
     window.location.replace(`${window.location.origin + '#/login'}`)
     return Promise.reject(response.data.data)
-  } else if (code === 1) {
+  } else if (code === 0) {
     return Promise.resolve(response.data.data)
   } else {
-    // message.warn(response.data.msg || '服务正忙，请稍后再试~')
+    Message.error(response.data.msg || '服务正忙，请稍后再试~')
     return Promise.reject(response.data.data)
   }
 }, err => {
