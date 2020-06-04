@@ -98,6 +98,7 @@ export default {
           register(this.ruleForm).then(res => {
             console.log(res)
             this.$message.success('注册成功')
+            this.$router.push('/login')
           })
         } else {
           console.log('error submit!!');

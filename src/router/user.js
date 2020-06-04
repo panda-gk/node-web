@@ -17,13 +17,22 @@ const userRoutes = [
           import(/* webpackChunkName: "about" */ "@/views/user/Index.vue")
       },
       {
-        path: "/content",
-        name: "content",
+        path: "/add",
+        name: "add",
         meta: {
-          title: '发布内容'
+          title: '发布'
         },
         component: () =>
-          import(/* webpackChunkName: "about" */ "@/views/content/Index.vue")
+          import(/* webpackChunkName: "about" */ "@/views/add/Index.vue")
+      },
+      {
+        path: "/blog",
+        name: "blog",
+        meta: {
+          title: '文章列表'
+        },
+        component: () =>
+          import(/* webpackChunkName: "about" */ "@/views/blog/Index.vue")
       },
     ]
   },

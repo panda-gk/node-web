@@ -16,6 +16,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "home" */ '@/views/Register.vue')
   },
   {
+    path: '/test',
+    name: 'test',
+    meta: {
+      requireAuth: true
+    },
+    component: () => import(/* webpackChunkName: "home" */ '@/views/Test.vue')
+  },
+  {
     path: '/',
     redirect: '/home'
   },

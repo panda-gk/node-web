@@ -22,7 +22,14 @@ export const quickCreate = (params) => http.get('/api/user/qkCreate', {params})
 export const delUser = (params) => http.get('/api/user/del', {params})
 // 编辑用户
 export const editUser = (params) => http.post('/api/user/edit', params)
+// 创建文章
+export const createBlog = (params) => http.post('/api/blog/add', params)
+// 获取所有文章
+export const getAllBlogs = (params) => http.post('/api/blog/list', params)
 
-
-
+// 测试
+export const getTestList = () => http.get('/api/test/list')
+export const getTesDetail = () => http.get('/api/test/detail')
+export const getTesDetail2 = (params) => http.get('/api/test/detail2', {params})
+export const getTestLogin = (params) => http.post('/api/test/login', params)
 
