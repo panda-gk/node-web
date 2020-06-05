@@ -34,6 +34,15 @@ const userRoutes = [
         component: () =>
           import(/* webpackChunkName: "about" */ "@/views/blog/Index.vue")
       },
+      {
+        path: "/attention",
+        name: "attention",
+        meta: {
+          title: '关注'
+        },
+        component: () =>
+          import(/* webpackChunkName: "about" */ "@/views/attention/Index.vue")
+      },
     ]
   },
 ];

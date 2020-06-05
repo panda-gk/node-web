@@ -26,6 +26,17 @@ export const editUser = (params) => http.post('/api/user/edit', params)
 export const createBlog = (params) => http.post('/api/blog/add', params)
 // 获取所有文章
 export const getAllBlogs = (params) => http.post('/api/blog/list', params)
+// 获取所有的用户
+export const getAllUser = (params) => http.get('/api/fan/user', params)
+// 成为别人的粉丝
+export const attentionOther = (params) => http.get('/api/fan/attentionOther', {params})
+// 我关注的
+export const getAttentionOther = () => http.get('/api/fan/self/attention')
+// 我的粉丝
+export const getMyFan = () => http.get('/api/fan/myFan')
+
+
+
 
 // 测试
 export const getTestList = () => http.get('/api/test/list')
